@@ -1,12 +1,13 @@
 import { useState } from 'react' 
-import './App.css'
-import {heading} from '../src/components/heading/heading';
+import './App.css'  
+import {Heading} from './components/heading/Heading';
+
 
 function App() { 
 
   return (
-    <>
-      <heading />
+    <>  
+     <Heading id={greeting} />
     </>
   )
 }
