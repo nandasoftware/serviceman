@@ -1,13 +1,13 @@
 import { useState } from 'react' 
 import './App.css'  
-import {Heading} from './components/heading/Heading';
+import GetStarted from './pages/GetStarted'
 
 
 function App() { 
 
   return (
     <>  
-     <Heading id={greeting} />
+     <GetStarted title="nandakumar" />
     </>
   )
 }
