@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import Button from "../../components/button";
 import { useForm } from 'react-hook-form';
 
@@ -16,23 +16,46 @@ const ProfilePage = ({ title }: ProfilePageProps) => {
         formState: { errors },
     } = useForm();
 
+    console.log(errors);
+
+    const onsub = (data: any) => {
+        console.log(data);
+    };
+
+    var data = [{ name: "nanda", no: "fsdfd", datas: [{ name: "nanda", no: "fsdfd" }, { name: "nanda 2", no: "97897" }] }, { name: "nanda 2", no: "97897", datas: [] }];
+    console.log(data);
+
     const [clink, setClink] = useState(0)
     return (
         <>
-            <div className="text-center">
-                <div></div>
-                <p></p>
-                <p></p>
-                
 
-                <form onSubmit={handleSubmit((data) => console.log(data))}>
-                    <input {...register('name')} value="Nandakumar" />
-                    {errors.names && <p>Email is required.</p>}
-                    <input {...register('email')} value="nanda.software@gmail.com"/>
-                    {errors.email && <p>Email is required.</p>}
-                    <input {...register('phone', { pattern: /\d+/ })} />
-                    {errors.phone && <p>Please enter phone number.</p>}
-                    <Button onclick={handleOnclick} count={clink} title="Get Started" />
+            <div>
+                {data.map((item, index) => {
+                    return (
+                        <Fragment key={index}>
+                            <div>{item.name}</div>
+                            <div>{item.no}</div>
+                            {item.datas.map((item, index) => {
+                                return (
+                                    <Fragment key={index}>
+                                        <div>{item.name}</div>
+                                        <div>{item.no}</div>
+                                    </Fragment>
+                                )
+                            })}
+                        </Fragment>
+                    )
+                })}
+            </div>
+
+            <div className="text-center">
+                <form onSubmit={handleSubmit((data) => onsub(data))}>
+                    <input type="text" {...register('name', { required: true, minLength: 3 })} />
+                    {errors.name && <span>This field is required</span>}
+                    <input {...register('email')} />
+                    <input {...register('phone')} />
+                    <input type="submit" />
+                    {/* <Button type="submit" onclick={handleOnclick} count={clink} title="Get Started" /> */}
                 </form>
             </div>
         </>

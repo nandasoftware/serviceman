@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Button from "../../components/button";
+import { Link } from "react-router-dom";
 
 type GetStartedProps = { title: string }
 
@@ -13,7 +14,9 @@ const GetStarted = ({ title }: GetStartedProps) => {
             <div className="text-center">
                 <div>Your Local Helper</div>
                 <p>Have a problem that you can't solved? Don't worry, Lets get started.</p>
-                <Button onclick={handleOnclick} count={clink} title="Get Started" />
+                <Link className="text-center" to={`onboarding/${clink}`}>
+                  sdfdf
+                </Link>
             </div>
         </>
     )
