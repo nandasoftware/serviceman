@@ -2,7 +2,17 @@ import { Fragment, useState } from "react";
 import Button from "../../components/button";
 import { useForm } from 'react-hook-form';
 
+import { Helmet } from "react-helmet";
+import styled from "styled-components";
 
+ 
+
+const Styledfile = styled.div`
+background:red;
+div{
+    background:blue;
+}
+`;
 type ProfilePageProps = { title: string }
 
 const ProfilePage = ({ title }: ProfilePageProps) => {
@@ -14,7 +24,7 @@ const ProfilePage = ({ title }: ProfilePageProps) => {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm();
+    } = useForm({ mode: "onChange" });
 
     console.log(errors);
 
@@ -27,13 +37,13 @@ const ProfilePage = ({ title }: ProfilePageProps) => {
 
     const [clink, setClink] = useState(0)
     return (
-        <>
+        <Styledfile>
 
             <div>
                 {data.map((item, index) => {
                     return (
                         <Fragment key={index}>
-                            <div>{item.name}</div>
+                            <Styledfile>{item.name}</Styledfile>
                             <div>{item.no}</div>
                             {item.datas.map((item, index) => {
                                 return (
@@ -50,7 +60,7 @@ const ProfilePage = ({ title }: ProfilePageProps) => {
 
             <div className="text-center">
                 <form onSubmit={handleSubmit((data) => onsub(data))}>
-                    <input type="text" {...register('name', { required: true, minLength: 3 })} />
+                    <input type="text" {...register('name', { required: true })} />
                     {errors.name && <span>This field is required</span>}
                     <input {...register('email')} />
                     <input {...register('phone')} />
@@ -58,7 +68,7 @@ const ProfilePage = ({ title }: ProfilePageProps) => {
                     {/* <Button type="submit" onclick={handleOnclick} count={clink} title="Get Started" /> */}
                 </form>
             </div>
-        </>
+        </Styledfile>
     )
 }
 
