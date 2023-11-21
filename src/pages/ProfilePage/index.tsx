@@ -2,17 +2,23 @@ import { Fragment, useState } from "react";
 import Button from "../../components/button";
 import { useForm } from 'react-hook-form';
 
-import { Helmet } from "react-helmet";
 import styled from "styled-components";
+import Slider from "react-slick";
 
- 
 
 const Styledfile = styled.div`
-background:red;
-div{
-    background:blue;
-}
+ 
+ 
 `;
+
+const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1
+};
+
 type ProfilePageProps = { title: string }
 
 const ProfilePage = ({ title }: ProfilePageProps) => {
@@ -38,6 +44,31 @@ const ProfilePage = ({ title }: ProfilePageProps) => {
     const [clink, setClink] = useState(0)
     return (
         <Styledfile>
+
+
+            <div>
+                <h2> Single Item</h2>
+                <Slider {...settings}>
+                    <div>
+                        <h3>1</h3>
+                    </div>
+                    <div>
+                        <h3>2</h3>
+                    </div>
+                    <div>
+                        <h3>3</h3>
+                    </div>
+                    <div>
+                        <h3>4</h3>
+                    </div>
+                    <div>
+                        <h3>5</h3>
+                    </div>
+                    <div>
+                        <h3>6</h3>
+                    </div>
+                </Slider>
+            </div>
 
             <div>
                 {data.map((item, index) => {
